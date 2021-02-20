@@ -8,30 +8,31 @@ const requireToken = require('../middleware/requireToken');
 
 router.post('/login', async (req, res) => {
     const { mobile } = req.body;
+    console.log(req.body)
     const userExist = await User.findOne({ mobile: mobile });
     if (!userExist) {
         try{
             const user = new User({ mobile: mobile });
             await user.save();
             const token = jwt.sign({userId: user._id}, 'secret');
-            res.send({ token: token, mobile: mobile, })
+            res.send({ token: token })
         }
         catch(error){
-            return res.status(422).send(error.message);
+            return res.send(error.message);
         }
     }
     else{
         try{
             const token = jwt.sign({userId: userExist._id}, 'secret');
             if (userExist.fname) {
-                res.send({ token: token, fname: userExist.fname, lname: userExist.lname, mobile: userExist.mobile, bloodGroup: userExist.bloodGroup, address: userExist.address, city: userExist.city });
+                res.send({ token: token, fname: userExist.fname, lname: userExist.lname, bloodGroup: userExist.bloodGroup, address: userExist.address, city: userExist.city });
             }
             else{
-                res.send({ token: token, mobile: userExist.mobile, });
+                res.send({ token: token });
             }            
         }
         catch(error){
-            return res.status(422).send(error.message)
+            return res.send(error.message)
         }
     }
 });
