@@ -20,9 +20,9 @@ mongoose.connect(
   { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}).then(db => {
     console.log("Database connected");
   }).catch(error => console.log("Could not connect to mongo db " + error));
-  
+
 app.use('/auth', authRoutes);
 app.use('/', requireToken, (req, res) => {
-  res.send("Your Email is " + req.user.email)
-})
+  res.send("Your Mobile is " + req.user.mobile)
+});
 app.listen(process.env.PORT || port)
