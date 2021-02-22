@@ -39,6 +39,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/info', requireToken, async (req, res) => {
     mongoose.set('useFindAndModify', false);
+    console.log(req.body, "body")
     try{
         await User.findOneAndUpdate({ _id: req.user._id }, req.body);
         res.send({ success: "done" });
