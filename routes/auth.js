@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
             res.send({ token: token })
         }
         catch(error){
-            return res.send(error.message);
+            return res.send({message: error.message});
         }
     }
     else{
@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
             }            
         }
         catch(error){
-            return res.send(error.message)
+            return res.send({message: error.message});
         }
     }
 });
@@ -45,7 +45,7 @@ router.post('/info', requireToken, async (req, res) => {
         res.send({ success: "done" });
     }
     catch(error){
-        res.send(error.message);
+        return res.send({message: error.message});
     }
 });
 // router.post('/signin', async (req, res) => {
