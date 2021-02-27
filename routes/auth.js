@@ -25,11 +25,11 @@ router.post('/login', async (req, res) => {
         try{
             const token = jwt.sign({userId: userExist._id}, 'secret');
             if (userExist.fname) {
-                res.send({ token: token, fname: userExist.fname, lname: userExist.lname, bloodGroup: userExist.bloodGroup, address: userExist.address, city: userExist.city });
+                res.send({ token: token, role: userExist.role, fname: userExist.fname, lname: userExist.lname, bloodGroup: userExist.bloodGroup, address: userExist.address, city: userExist.city, accidents: userExist.accidents });
             }
             else{
                 res.send({ token: token });
-            }            
+            }
         }
         catch(error){
             return res.send({message: error.message});

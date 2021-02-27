@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    role: {
+        type: String,
+        required: true
+    },
     bloodGroup: {
         type: String
     },
@@ -24,6 +28,9 @@ const userSchema = new mongoose.Schema({
     },
     location: {
         type: Object,
+    },
+    accidents: {
+       type: Array, 
     }
 });
 
