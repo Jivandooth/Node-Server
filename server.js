@@ -17,7 +17,7 @@ const port = 3000
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
-  process.env.DATABASE_URL,
+  "mongodb://user:IejXrylNxuLTEKPv@cluster0-shard-00-00.lefur.mongodb.net:27017,cluster0-shard-00-01.lefur.mongodb.net:27017,cluster0-shard-00-02.lefur.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-u8uu83-shard-0&authSource=admin&retryWrites=true&w=majority",
   { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true}).then(db => {
     console.log("Database connected");
   }).catch(error => console.log("Could not connect to mongo db " + error));
