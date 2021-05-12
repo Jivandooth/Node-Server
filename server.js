@@ -6,9 +6,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
 require('./models/user');
-require('./models/accident');
 const authRoutes = require('./routes/auth');
-const accidentcomplian = require('./routes/accidentcomplain');
+
 const requireToken = require('./middleware/requireToken');
 app.use(express.json());
 app.use(bodyParser.json());
@@ -24,7 +23,6 @@ mongoose.connect(
   }).catch(error => console.log("Could not connect to mongo db " + error));
 
 app.use('/auth', authRoutes);
-app.use('/accidentcomplain', accidentcomplian);
 app.use('/', requireToken, (req, res) => {
   res.send({"Mobile ": req.user.mobile})
 });
